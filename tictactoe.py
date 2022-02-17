@@ -76,8 +76,13 @@ def update_board(board: Board, player: Player, coords: Coords):
     :param player: the player that made the move
     :param coords: the coordinates (row, column) of the player's move
     """
-    #note to self - no checking if the current is * so it may override.
-    board[coords[0]][coords[1]] = player
+    if board[coords[0]][coords[1]] != EMPTY:
+        print("this is a used square! try again")
+        return False
+    else:
+        board[coords[0]][coords[1]] = player
+        return True
+
 
 
 def get_move(player: Player) -> Coords:
@@ -133,8 +138,9 @@ def play_game(board_size: int = None):
     while not won(current_player, board):
         show_board(board)
         coordinates = get_move(current_player)
-        update_board(board, current_player, coordinates)
-        current_player = switch_player(current_player)
+        check_update = update_board(board, current_player, coordinates)
+        if check_update:
+            current_player = switch_player(current_player)
     show_winner(current_player)
 
 
