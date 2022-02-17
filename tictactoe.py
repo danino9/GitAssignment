@@ -3,7 +3,7 @@ import random
 X = "X"
 O = "O"
 EMPTY = "*"
-
+# this is daniel commmit
 # Bigger board sizes are less likely
 RANDOM_SIZES = [3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 6]
 
