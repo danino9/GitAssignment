@@ -14,12 +14,6 @@ Coords = tuple[int, int]
 
 
 def create_board(size: int) -> Board:
-    """
-    Create an empty game board.
-
-    :param size: the size of the board
-    :return: the initialized board
-    """
     board = []
     for i in range(size):
         row = []
@@ -47,11 +41,6 @@ def check_columns(board, player):
 
 
 def check_diagonals(board, player):
-    """
-    checking if we have a winner in diagonal
-    :param board: the board to check
-     :param player: the player that we want to check if he has digonal win
-    """
 
     marks = 0
     marks_sec = 0
@@ -69,13 +58,6 @@ def won(player: Player, board: Board) -> bool:
 
 
 def update_board(board: Board, player: Player, coords: Coords):
-    """
-    Updates a game board with a given player's move.
-
-    :param board: the board to update
-    :param player: the player that made the move
-    :param coords: the coordinates (row, column) of the player's move
-    """
     if board[coords[0]][coords[1]] != EMPTY:
         print("this is a used square! try again")
         return False
@@ -86,51 +68,24 @@ def update_board(board: Board, player: Player, coords: Coords):
 
 
 def get_move(player: Player) -> Coords:
-    """
-    Asks a player for their next move.
-
-    :param player: the player whose turn it is to play
-    :return: the coordinates the player chose
-    """
     row, col = input(f"{player}'s move: ").split()
     return int(row), int(col)
 
 
 def show_board(board: Board):
-    """
-    Print the current state of the game board.
-
-    :param board: the board to display
-    """
     for row in board:
         print(" ".join(row))
 
 
 def show_winner(player: Player):
-    """
-    Print an endgame message with the name of the winner.
-
-    :param player: the player who won
-    """
     print(f"\nAnd the WINNER is: .....\n!!!!!!!!!!!! {player} !!!!!!!!!!!!")
 
 
 def switch_player(current_player: Player) -> Player:
-    """
-    Determine whose turn it is next.
-
-    :param current_player: the player who played last
-    :return: the player who will play next
-    """
     return X if current_player == O else O
 
 
 def play_game(board_size: int = None):
-    """
-    Play a game of Tic-Tac-Toe.
-
-    :param board_size: the size of the game board. randomized by default.
-    """
     if not board_size:
         board_size = random.choice(RANDOM_SIZES)
     board = create_board(board_size)
