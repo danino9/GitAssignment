@@ -46,8 +46,26 @@ def check_columns(board, player):
     return False
 
 
+def check_diagonals(board, player):
+    """
+    checking if we have a winner in diagonal
+    :param board: the board to check
+     :param player: the player that we want to check if he has digonal win
+    """
+
+    marks = 0
+    marks_sec = 0
+    for i, row in enumerate(board):
+        marks += board[i][i] == player
+        marks_sec += board[i][len(row)-1 - i] == player
+    if marks == len(row) or marks_sec == len(row):
+        return True
+    return False
+
+
+
 def won(player: Player, board: Board) -> bool:
-    return check_rows(board, player) or check_columns(board, player)
+    return check_rows(board, player) or check_columns(board, player) or check_diagonals(board, player)
 
 
 def update_board(board: Board, player: Player, coords: Coords):
